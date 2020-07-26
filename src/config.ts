@@ -1,7 +1,7 @@
 let global: any = typeof window !== 'undefined' ? window : self;
 global.config = {
 	apiUrl: [
-		"https://01-cache.testnet.myqwertycoin.com/"
+		"https://01-cache.myqwertycoin.com/"
 	],
 	nodeList: [
 		"https://testnet.myqwertycoin.com/sslnode/",
@@ -10,12 +10,12 @@ global.config = {
 	],
 	electionApiUrl: "https://voting.qwertycoin.org/api",
 	websiteApiUrl: "https://www.qwertycoin.org/wp-json",
-	mainnetexplorer.testnetUrl: "https://explorer.testnet.qwertycoin.org/",
-	mainnetexplorer.testnetUrlHash: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_transaction",
-	mainnetexplorer.testnetUrlBlock: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_block",
-	testnetexplorer.testnetUrl: "https://explorer.testnet.qwertycoin.org/",
-	testnetexplorer.testnetUrlHash: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_transaction",
-	testnetexplorer.testnetUrlBlock: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_block",
+	mainnetExplorerUrl: "https://explorer.testnet.qwertycoin.org/",
+	mainnetExplorerUrlHash: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_transaction",
+	mainnetExplorerUrlBlock: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_block",
+	testnetExplorerUrl: "https://explorer.testnet.qwertycoin.org/",
+	testnetExplorerUrlHash: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_transaction",
+	testnetExplorerUrlBlock: "https://explorer.testnet.qwertycoin.org/?hash={ID}#blockchain_block",
 	testnet: false,
 	coinUnitPlaces: 8,
 	coinDisplayUnitPlaces: 2,
