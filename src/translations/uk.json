@@ -1,0 +1,563 @@
+{
+  "date": {
+    "long": {
+      "day": "numeric",
+      "hour": "numeric",
+      "hour12": "True",
+      "minute": "numeric",
+      "month": "short",
+      "weekday": "short",
+      "year": "numeric"
+    },
+    "short": {
+      "day": "numeric",
+      "month": "short",
+      "year": "numeric"
+    }
+  },
+  "messages": {
+    "accountPage": {
+      "balanceBlock": {
+        "title": "Ваш баланс",
+        "unlocked": "Доступно"
+      },
+      "currencyBlock": {
+        "aud": "AUD",
+        "btc": "BTC",
+        "cad": "CAD",
+        "chf": "CHF",
+        "cny": "CNY",
+        "eth": "ETH",
+        "eur": "EUR",
+        "gbp": "GBP",
+        "jpy": "JPY",
+        "krw": "KRW",
+        "kwd": "KWD",
+        "ltc": "LTC",
+        "rub": "RUB",
+        "try": "TRY",
+        "usd": "USD",
+        "vnd": "VND"
+      },
+      "historyBlock": {
+        "beReallyPatient": "Початкова установка може зайняти деякий час...",
+        "emptyWallet": "У цьому гаманці поки немає коштів.",
+        "getCoinAddress": "Отримати QWC",
+        "pendingTxStatus": "Очікується",
+        "title": "Історія транзакцій",
+        "waitSync": "Будь ласка, зачекайте гаманець оновлює дані"
+      },
+      "subtitle": "Огляд вашого профілю та історії транзакцій",
+      "synchronizingBlock": {
+        "text": "Синхронізація..."
+      },
+      "title": "Аккаунт",
+      "txDetails": {
+        "blockHeight": "Висота блоку",
+        "feesOnTx": "Комісія",
+        "paymentId": "Ідентифікатор платежу",
+        "timestamp": "Timestamp",
+        "title": "Деталі транзакції",
+        "txHash": "Хеш",
+        "txPrivKey": "Секретний ключ транзакції",
+        "unlockConfirm": "Confirmations",
+        "unlockStatus": "Status"
+      }
+    },
+    "bottom": {
+      "donate": "Пожертвувати",
+      "github": "GitHub",
+      "miningPool": "Майнінг",
+      "network": "Мережа",
+      "privacyPolicy": "Політика конфіденційності",
+      "support": "Допомога",
+      "termsOfUse": "Умови використання"
+    },
+    "changeWalletPasswordPage": {
+      "confirm": "Змінити пароль",
+      "modalSuccess": {
+        "confirmText": "Гаразд",
+        "title": "Пароль змінений!"
+      },
+      "newPassword": {
+        "invalid": "A strong password must be at least eight characters long, with upper and lowercase letters and symbols",
+        "label": "Виберіть новий пароль для захисту вашого гаманця"
+      },
+      "newPasswordConfirm": {
+        "label": "Підтвердіть новий пароль"
+      },
+      "oldPassword": {
+        "invalid": "Пароль недійсний",
+        "label": "Старий пароль"
+      },
+      "title": "Змінити ваш пароль"
+    },
+    "contactPage": {
+      "contactBlock": {
+        "cancel": "Cancel",
+        "confirm": "Add",
+        "contactAddress": "Address",
+        "contactName": "Name",
+        "getNewContacts": "Add Contact",
+        "newContact": "New Contact",
+        "noContacts": "You don't have any contacts yet.",
+        "title": "Your Contacts"
+      },
+      "contactDetailsBlock": {
+        "address": "Address",
+        "sendTo": "Send to ",
+        "title": "Contactdetails"
+      },
+      "subtitle": "Get in touch with other people",
+      "title": "Contacts"
+    },
+    "createWalletPage": {
+      "disclaimerBlock": {
+        "content": "QwertycoinWallet це веб-інтерфейс. Він допомагає вам використовувати Qwertycoin без необхідності тримати повний вузол мережі Qwertycoin. <br/>Ми рекомендуємо ставитися до QwertycoinWallet з усією серйозністю, як до вашого гаманця.",
+        "title": "Ризики використання QwertycoinWallet"
+      },
+      "finalizationStep": {
+        "backupBlock": {
+          "confirmManuallyWritten": "Я записав собі мнемонічну фразу",
+          "finishButton": "Я зрозумів. Продовжити.",
+          "mnemonicPhrase": "Мнемонічна фраза",
+          "option1": "Опція 1: ",
+          "option2": "Опція 2: ",
+          "privateKeys": "Приватний ключ",
+          "separatorManualMethodsSolution": " або ",
+          "title": "Збережіть ваші приватні дані щоб мати можливість відновлення.",
+          "titleManualWrite": "Записати ключі",
+          "titlePdf": "Завантажити PDF",
+          "warningMessage": "**Hе втратьте!** Вона не може бути відновлена якщо ви її втратите.<br/>**Нікому не передавайте!** Ваші кошти можуть бути вкрадені якщо скористаєтеся цим файлом або фразою на шкідливому / фішинговому сайті.<br/>**Зробіть резервну копію!** Бережіть як мільйон доларів, якого воно може одного прекрасного дня коштувати.<br/>"
+        },
+        "passwordConfirmBlock": {
+          "label": "Підтвердіть пароль"
+        },
+        "passwordSelectionBlock": {
+          "label": "Захистіть ваш гаманець"
+        },
+        "subtitle": "Приготуйтеся використовувати Qwertycoin як ніколи до цього",
+        "title": "Все. Ваш гаманець готовий!",
+        "title-mobile": "Your account is ready!",
+        "validPassword": "Використовувати цей пароль"
+      },
+      "generatingStep": {
+        "subtitle": "Майже готово",
+        "title": "Створюється гаманець...",
+        "waitingMessage": "Генерується гаманець..."
+      }
+    },
+    "donatePage": {
+      "devFundBlock": {
+        "content": "Щоб підтримати Qwertycoinванець, ви можете зробити пожертвування на ці адреси",
+        "title": "Офіційний фонд Qwertycoin"
+      },
+      "masariFundBlock": {
+        "content": "If you wish to send a gift, send it to the following wallet",
+        "title": "Wallet to send the gift"
+      },
+      "QwertycoinFundBlock": {
+        "content": "To help Qwertycoin you can donate to this address",
+        "title": "Qwertycoin Dev fund"
+      },
+      "subtitle": "Допоможіть профінансувати розробку і оплату рахунків",
+      "title": "Пожертвувати",
+      "webwalletBlock": {
+        "content": "Якщо ви хочете підтримати розробку, допомогти з оплатою хостингу, якщо вам подобається аплікація, будь ласка зробіть пожертву: <br/><br/>",
+        "title": "Допомога Веб-гаманцю"
+      }
+    },
+    "electionsPage": {
+      "title": "Elections"
+    },
+    "exportPage": {
+      "exportBlock": {
+        "fileButton": "Експортувати у файл",
+        "mnemonicKeysButton": "Отримати мою мнемонічну фразу",
+        "privateKeysButton": "Отримати мої приватні ключі",
+        "title": "Експортувати сирі дані"
+      },
+      "mnemonicKeyModal": {
+        "confirmText": "Гаразд",
+        "content": "Будь ласка поставтеся серйозно до збереження цієї мнемонічною фрази. <b>Той хто її має, володіє коштами на гаманці</b> ! Фраза:<br/>{mnemonic}",
+        "title": "Мнемонічна фраза"
+      },
+      "mnemonicLangSelectionModal": {
+        "confirmText": "Експортувати",
+        "title": "Виберіть мову мнемонічної фрази"
+      },
+      "pdfBlock": {
+        "downloadButton": "Завантажити",
+        "title": "Резервна копія PDF"
+      },
+      "publicAddressBlock": {
+        "title": "Ваша публічна адреса"
+      },
+      "title": "Зробити резервну копію ваших даних",
+      "walletKeysModal": {
+        "confirmText": "Гаразд",
+        "content": "Будь ласка поставтеся серйозно до збереження цих ключів. <b>Той хто їх має, володіє коштами на гаманці</b>!<br/>Ключ витрачання: {privSpendKey}<br/>Ключ стеження: {privViewKey}",
+        "title": "Приватні ключі"
+      },
+      "warningBlock": {
+        "content": "Якщо ви вирішите зберегти приватні ключі або мнемонічну фразу, гаманець НЕ ЗБЕРЕЖЕ їх в текстовому вигляді для вашої безпеки.<br/>Файл є альтернативним рішенням де ваші ключі зашифровані і містить резервну копію всіх ваших транзакцій для прискорення синхронізації при відновленні.",
+        "title": "Увага"
+      }
+    },
+    "global": {
+      "disableSecurity": "Відключити цю пересторогу, я розумію ризик",
+      "download": "Завантажити",
+      "invalidMnemonicModal": {
+        "confirmText": "Гаразд",
+        "content": "Фраза для відновлення невірна",
+        "title": "Ой..."
+      },
+      "invalidPasswordModal": {
+        "confirmText": "Гаразд",
+        "content": "Здається пароль невірний",
+        "title": "Ой..."
+      },
+      "loading": "Триває завантаження",
+      "newVersionModal": {
+        "cancelText": "Назад",
+        "confirmText": "Так",
+        "content": "Хочете перезавантажити щоб оновити версію?",
+        "title": "Є нова версія"
+      },
+      "openWalletModal": {
+        "cancelText": "Скасувати",
+        "confirmText": "Відкрити",
+        "title": "Пароль гаманця"
+      },
+      "passwordConfirmationNotMatching": "Підтвердження пароля не збігається з першим",
+      "passwordInvalidRequirements": "Пароль повинен складатися принаймні з 8 символів - 1 великої літери, 1 маленької, одного числа, одного спецсимвола",
+      "passwordNotComplexEnoughModal": {
+        "confirmText": "Гаразд",
+        "title": "Пароль недостатньо складний"
+      },
+      "permissionRequiredForCameraModal": {
+        "confirmText": "Гаразд",
+        "content": "Потрібен дозвіл на доступ до камери для сканування QR коду",
+        "title": "Ой..."
+      }
+    },
+    "homepage": {
+      "actions": {
+        "create": "Створити",
+        "createWallet": "Створити гаманець",
+        "importWallet": "Імпортувати гаманець",
+        "loadWallet": "Завантажити мій гаманець"
+      },
+      "mainTitle": "Безпечний Гаманець Qwertycoinванця",
+      "notes": {
+        "fast": {
+          "description": "Доступний коли треба!",
+          "title": "Швидкий"
+        },
+        "openSource": {
+          "description": "Не довіряй - перевіряй!",
+          "title": "Open-source"
+        },
+        "secure": {
+          "description": "Без серверів, повністю зашифрований!",
+          "title": "Безпечний"
+        },
+        "technology": {
+          "description": "Ключі в браузері",
+          "title": "Локальний"
+        }
+      },
+      "tagLine": "де завгодно. в будь-який час. будь яке місце. будь-який пристрій.",
+      "tagLineTwo": "Найпростіший спосіб використання Qwertycoin"
+    },
+    "importBasePage": {
+      "parametersBlock": {
+        "importHeight": {
+          "label": "З якої висоти почати імпорт:"
+        },
+        "password": {
+          "label": "Пароль для захисту вашого гаманця"
+        },
+        "passwordConfirm": {
+          "invalid": "Пароль не збігається з першим введенням паролем",
+          "label": "Підтвердіть пароль"
+        },
+        "title": "Параметри"
+      }
+    },
+    "importFromFilePage": {
+      "subtitle": "Використати резервний файл для створення гаманця",
+      "title": "Імпорт гаманця з резервного фала",
+      "title-mobile": "Import from Backup",
+      "walletBlock": {
+        "importButton": "Імпортувати",
+        "label": "Виберіть файл",
+        "title": "Файл гаманця"
+      }
+    },
+    "importFromKeysPage": {
+      "keysBlock": {
+        "importButton": "Імпортувати",
+        "privateSpend": {
+          "label": "Приватний ключ витрачання"
+        },
+        "privateView": {
+          "label": "Приватний ключ стеження",
+          "optional": "(не обов'язково)"
+        },
+        "publicKey": {
+          "label": "Публічний ключ"
+        },
+        "titleNotViewOnly": "Ключі гаманця",
+        "titleViewOnly": "Гаманець стеження"
+      },
+      "parametersBlock": {
+        "viewOnlyWallet": {
+          "info": "Зверніть увагу, гаманець стеження призначений тільки для перегляду вхідних платежів, так що баланс може відображатися неправильно!",
+          "label": "Хочете створити гаманець стеження?"
+        }
+      },
+      "parametersBLock": {
+        "viewOnlyWallet": {
+          "info": "Please note that wallets only show your wallet for viewing only and you cannot submit Qwertycoin.",
+          "label": "Do you want a view Only Wallet?"
+        }
+      },
+      "subtitle": "Використати приватні ключі для створення гаманця",
+      "title": "Імпорт гаманця з ключів",
+      "title-mobile": "Import from Keys"
+    },
+    "importFromMnemonicPage": {
+      "mnemonicBlock": {
+        "importButton": "Імпортувати",
+        "mnemonic": {
+          "invalid": "Мнемонічна фраза неправильна",
+          "label": "Мнемонічна фраза: 25 слів",
+          "language": "Мова"
+        },
+        "title": "Мнемонічна фраза"
+      },
+      "subtitle": "Використати мнемонічну фразу для створення гаманця",
+      "title": "Імпорт гаманця з мнемонічної фрази",
+      "title-mobile": "Import from Mnemonic"
+    },
+    "importFromQrPage": {
+      "qrCodeBlock": {
+        "importButton": "Імпортувати",
+        "startScanButton": "Почати сканування",
+        "title": "QR код"
+      },
+      "qrScanningBlock": {
+        "title": "Покажіть QR код"
+      },
+      "subtitle": "Імпортувати гаманець з офлайнової резервної копії",
+      "title": "Імпортувати гаманець з QR коду",
+      "title-mobile": "Import from QRCode"
+    },
+    "importPage": {
+      "chooseMethod": "Виберіть метод імпорту:",
+      "fromFile": "З файлу",
+      "fromKeys": "З ключів",
+      "fromMnemonic": "З мнемонічної фрази",
+      "fromQr": "З QR коду",
+      "subtitle": "З раніше створених ключів, файлу або мнемонічною фрази",
+      "title": "Створити гаманець"
+    },
+    "menu": {
+      "account": "Огляд",
+      "contacts": "Contacts",
+      "disconnect": "Відключитися",
+      "donate": "Пожертвувати",
+      "elections": "Elections",
+      "export": "Експорт",
+      "home": "Огляд",
+      "messages": "Messages",
+      "mining": "Майнінг",
+      "network": "Статистика мережі",
+      "receive": "Отримати",
+      "send": "Надіслати",
+      "settings": "Налаштування"
+    },
+    "networkPage": {
+      "statsBlock": {
+        "connectNode": "Connected Masternode",
+        "difficulty": "Складність",
+        "hashrate": "Хешрейт",
+        "height": "Висота блокчейну",
+        "lastReward": "Нагорода за останній блок",
+        "lastTimeBlock": "Час останнього блоку"
+      },
+      "subtitle": "Огляд мережі Qwertycoin",
+      "title": "Статистика мережі"
+    },
+    "privacyPolicyPage": {
+      "subtitle": "Please read them carefully.",
+      "title": "Privacy Policy"
+    },
+    "receivePage": {
+      "nfcErrorModal": {
+        "titleInsufficientCapacity": "Місткість тега недостатня"
+      },
+      "qrBlock": {
+        "title": "Ваш персональний QR код"
+      },
+      "receiveBlock": {
+        "address": {
+          "label": "Дайте цю адресу щоб отримати кошти",
+          "title": "Ваша адреса для отримання:"
+        },
+        "qrCode": {
+          "labelAmount": "Сума (не обов'язково)",
+          "labelDescription": "Опис транзакції (не обов'язково)",
+          "labelRecipient": "Назва одержувача (не обов'язково)",
+          "title": "Або персоналізуйте QR код:",
+          "updateButton": "Оновити"
+        }
+      },
+      "title": "Отримати QWC",
+      "waitingNfcToWriteModal": {
+        "content": "Піднесіть NFC тег ближче для запису",
+        "title": "Очікування Nfc",
+        "titleSuccess": "Nfc тег записано"
+      }
+    },
+    "sendPage": {
+      "confirmTransactionModal": {
+        "cancelText": "Скасувати",
+        "confirmText": "Підтвердити",
+        "content": "Сума: {amount}<br/>Комісії: {fees}<br/>Всього: {total}",
+        "title": "Підтвердити переказ?"
+      },
+      "creatingTransferModal": {
+        "content": "Будь ласка зачекайте...",
+        "title": "Створюється переказ..."
+      },
+      "finalizingTransferModal": {
+        "content": "Будь ласка зачекайте...",
+        "title": "Завершується переказ..."
+      },
+      "invalidAmountModal": {
+        "confirmText": "Гаразд",
+        "content": "Неправильна сума",
+        "title": "Ой..."
+      },
+      "notEnoughMoneyModal": {
+        "confirmText": "Гаразд",
+        "content": "У гаманці недостатньо коштів для здійснення цього перекладу",
+        "title": "Ой..."
+      },
+      "qrCodeScanning": {
+        "explication": "Показати QR код"
+      },
+      "sendBlock": {
+        "address": {
+          "description": "Опис",
+          "fundsTo": "Кошти будуть відправлені на",
+          "invalid": "Адреса одержувача неправильна",
+          "label": "Адреса одержувача",
+          "placeholder": "Вкажіть адресу, на яку хочете відправити кошти",
+          "receiver": "Одержувач"
+        },
+        "amount": {
+          "invalid": "Сума неправильна",
+          "label": "Сума"
+        },
+        "cancelButton": "Скасувати",
+        "paymentId": {
+          "invalid": "Ідентифікатор платежу невірний. Довжина повинна бути 16 або 64 символи",
+          "label": "Payment ID (не обов'язково)"
+        },
+        "sendButton": "Надіслати",
+        "useCountryCurrency": "Send with main Currency"
+      },
+      "thankYouDonationModal": {
+        "confirmText": "Гаразд",
+        "content": "Ми цінуємо вашу підтримку. <br/>Це пожертвування допоможе зробити Qwertycoin краще",
+        "title": "Спасибі за ваше пожертвування!"
+      },
+      "title": "Надіслати QWC",
+      "transferExceptionModal": {
+        "confirmText": "Гаразд",
+        "content": "Сталася помилка. Будь ласка повідомте про неї: {details}",
+        "title": "Ой..."
+      },
+      "transferSentModal": {
+        "confirmText": "Гаразд",
+        "title": "Переказ успішно відправлений!"
+      },
+      "waitingNfcModal": {
+        "content": "Піднесіть ближче до іншого пристрою",
+        "title": "Очікування Nfc"
+      }
+    },
+    "settingsPage": {
+      "changePasswordButton": "Змінити пароль мого гаманця",
+      "deleteContactModal": {
+        "cancelText": "Cancel",
+        "confirmText": "Yes",
+        "content": "Are you SURE that you want to delete all your contacts?",
+        "title": "Delete my Contacts"
+      },
+      "deleteContactsButton": "Delete my Contacts",
+      "deleteWalletButton": "Видалити мій гаманець (локальну копію)",
+      "deleteWalletModal": {
+        "cancelButtonText": "Cancel",
+        "cancelText": "Скасувати",
+        "confirmText": "Так, я знаю що роблю",
+        "content": "Ви ДІЙСНО впевнені що хочете видалити свій гаманець?",
+        "title": "Видалити мій гаманець (локальну копію)"
+      },
+      "settingsBlock": {
+        "currency": {
+          "label": "національна валюта"
+        },
+        "language": {
+          "label": "Мова"
+        },
+        "readMinerTx": {
+          "label": "Зчитувати транзакції майнінгу (тільки для соло майнінгу)"
+        },
+        "speed": {
+          "fast": "Швидка",
+          "fastest": "Найшвидша",
+          "label": "Швидкість оновлення гаманця (споживатиме більше ресурсів)",
+          "medium": "Середня",
+          "slow": "Повільна"
+        }
+      },
+      "subtitle": "Тут ви можете змінити параметри",
+      "title": "Налаштування",
+      "versionBlock": {
+        "versionAppName": "App Name: ",
+        "versionCode": "Код версії: ",
+        "versionNumber": "Номер версії: "
+      },
+      "walletSettings": {
+        "creationHeight": {
+          "label": "Висота створення гаманця"
+        },
+        "currentScanningHeight": {
+          "label": "Поточна висота сканування"
+        },
+        "updateButton": "Оновити"
+      }
+    },
+    "supportPage": {
+      "getInTouchBlock": {
+        "content": "Є ідеї або побажання щодо поліпшення гаманця? Напишіть нам!",
+        "discord": "Канал Qwertycoin в Discord",
+        "title": "Зв'яжіться з нами!"
+      },
+      "subtitle": "Ми тут щоб допомогти!",
+      "title": "Підтримка"
+    },
+    "termsOfUsePage": {
+      "subtitle": "Уважно їх прочитайте.",
+      "title": "Умови використання"
+    }
+  },
+  "website": {
+    "description": "Офіційний онлайн гаманець криптовалюти Qwertycoin - анонімний, надійний, працює повністю у вашому браузері для найвищої безпеки",
+    "title": "Веб-гаманець Qwertycoin"
+  }
+}
