@@ -4,9 +4,9 @@ global.config = {
 		"https://01-cache.testnet.myqwertycoin.com/"
 	],
 	nodeList: [
-		"https://testnet.myqwertycoin.com/nodesvr/",
-		"https://private.myqwertycoin.com/api/?mode=get&url=http://node-00.testnet.qwertycoin.org:8197/",
-		"https://private.myqwertycoin.com/api/?mode=get&url=http://node-01.testnet.qwertycoin.org:8197/"
+		"https://testnet.myqwertycoin.com/sslnode/",
+		"https://testnet.myqwertycoin.com/api/?mode=get&url=http://node-00.testnet.qwertycoin.org:8197/",
+		"https://testnet.myqwertycoin.com/api/?mode=get&url=http://node-01.testnet.qwertycoin.org:8197/"
 	],
 	electionApiUrl: "https://voting.qwertycoin.org/api",
 	websiteApiUrl: "https://www.qwertycoin.org/wp-json",
