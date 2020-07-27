@@ -70,9 +70,12 @@ export class WalletWatchdog {
                         self.signalWalletUpdate();
                     }
                     if (self.workerCurrentProcessing.length > 0) {
-                        let transactionHeight = self.workerCurrentProcessing[self.workerCurrentProcessing.length - 1].height;
-                        if (typeof transactionHeight !== 'undefined')
+                        let transactionHeight = self.workerCurrentProcessing[self.workerCurrentProcessing.length - 1].blockIndex;
+                        if (typeof transactionHeight !== 'undefined') {
                             self.wallet.lastHeight = transactionHeight;
+                        } else {
+                            self.wallet.lastHeight = self.lastBlockLoading;
+                        }
                     }
 
                     self.workerProcessingWorking = false;
@@ -252,10 +255,27 @@ export class WalletWatchdog {
                 }
                 self.explorer.getTransactionsForBlocks(previousStartBlock).then(function (transactions: RawDaemonTransaction[]) {
                     //to ensure no pile explosion
+                    if (Constants.DEBUG_STATE) {
+                        console.log("transactions length: " + transactions.length);
+                    }
                     if (transactions.length > 0) {
                         let lastTx = transactions[transactions.length - 1];
+                        if (Constants.DEBUG_STATE) {
+                            // @ts-ignore
+                            console.log("lastTx.blockIndex + 1: " + (lastTx.blockIndex + 1));
+                        }
                         if (typeof lastTx.height !== 'undefined') {
-                            self.lastBlockLoading = lastTx.height + 1;
+                            self.lastBlockLoading = lastTx.blockIndex + 1;
+                            if (Constants.DEBUG_STATE) {
+                                // @ts-ignore
+                                console.log("self.lastBlockLoading: " + self.lastBlockLoading);
+                            }
+                        }
+                    } else {
+                        if (self.lastBlockLoading < height) {
+                            self.lastBlockLoading += 100;
+                        } else {
+                            self.lastBlockLoading = height;
                         }
                     }
 
@@ -364,48 +384,55 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
         let transactions: RawDaemonTransaction[] = [];
 
         return new Promise<RawDaemonTransaction[]>(function (resolve, reject) {
+            if (Constants.DEBUG_STATE) {
+                console.log("startBlock: " + startBlock);
+            }
             let outCount: any;
             let finalTxs: any[] = [];
             let height = startBlock;
+            let additor = 100;
 
             self.postData(self.nodeAddress + 'get_transaction_details_by_heights', {
                 "startBlock": startBlock,
-                "additor": 100,
+                "additor": additor,
                 "sigCut": true
             }).then(response => {
                 let parsedResp = response;
-                if (parsedResp['status'] == 'OK') {
-                    let rawTxs = parsedResp['transactions'];
 
-                    if (rawTxs !== null) {
-                        for (let iTx = 0; iTx < rawTxs.length; ++iTx) {
-                            let rawTx = rawTxs[iTx];
-                            let finalTx = rawTx;
+                let rawTxs = parsedResp['transactions'];
 
-                            delete finalTx.signatures;
-                            delete finalTx.unlockTime;
-                            delete finalTx.signatureSize;
-                            delete finalTx.ts;
-                            finalTx.global_index_start = outCount;
-                            finalTx.ts = rawTx.timestamp;
-                            finalTx.height = height;
-                            finalTx.hash = rawTx.hash;
-                            finalTxs.push(finalTx);
-
-                            let vOutCount = finalTx.outputs.length;
-                            outCount += vOutCount;
-                        }
-
-                        transactions = finalTxs;
-
-                        if (Constants.DEBUG_STATE) {
-                            console.log("Show resolvable Tx Hashes");
-                            for (let i = 0; i < transactions.length; i++) {
-                                console.log(`Tx hash ${transactions[i].hash}`);
-                            }
-                        }
-                        resolve(transactions);
+                if (rawTxs !== null) {
+                    if (Constants.DEBUG_STATE) {
+                        console.log("rawTxs !== null");
+                        console.log(rawTxs);
                     }
+                    for (let iTx = 0; iTx < rawTxs.length; ++iTx) {
+                        let rawTx = rawTxs[iTx];
+                        let finalTx = rawTx;
+
+                        delete finalTx.signatures;
+                        delete finalTx.unlockTime;
+                        delete finalTx.signatureSize;
+                        delete finalTx.ts;
+                        finalTx.global_index_start = outCount;
+                        finalTx.ts = rawTx.timestamp;
+                        finalTx.height = height;
+                        finalTx.hash = rawTx.hash;
+                        finalTxs.push(finalTx);
+
+                        let vOutCount = finalTx.outputs.length;
+                        outCount += vOutCount;
+                    }
+
+                    transactions = finalTxs;
+
+                    if (Constants.DEBUG_STATE) {
+                        console.log("Show resolvable Tx Hashes");
+                        for (let i = 0; i < transactions.length; i++) {
+                            console.log(`Tx hash ${transactions[i].hash}`);
+                        }
+                    }
+                    resolve(transactions);
                 }
             }).catch(error => {
                 if (Constants.DEBUG_STATE) {
