@@ -43,8 +43,7 @@ type RawDaemonTransaction = {
     blockIndex: number,
     timestamp?: number
     hash?: string,
-    paymentId: string,
-    lastCheck: number
+    paymentId: string
 };
 
 type RemoteNodeInformation = {
