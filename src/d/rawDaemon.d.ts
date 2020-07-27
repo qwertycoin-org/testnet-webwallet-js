@@ -38,11 +38,16 @@ type RawDaemonTransaction = {
     inputs: Inputs[],
     fee: number,
     unlockTime: number,
-    global_index_start ? : number,
-    height ? : number,
-    timestamp ? : number
-    hash ? : string,
+    global_index_start?: number,
+    height?: number,
+    timestamp?: number
+    hash?: string,
     paymentId: string
+};
+
+type RemoteNodeInformation = {
+    fee_address: string,
+    status: string
 };
 
 type RawDaemonBlock = any;
