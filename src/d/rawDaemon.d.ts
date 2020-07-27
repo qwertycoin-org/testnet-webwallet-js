@@ -40,9 +40,11 @@ type RawDaemonTransaction = {
     unlockTime: number,
     global_index_start?: number,
     height?: number,
+    blockIndex: number,
     timestamp?: number
     hash?: string,
-    paymentId: string
+    paymentId: string,
+    lastCheck: number
 };
 
 type RemoteNodeInformation = {
