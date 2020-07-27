@@ -295,10 +295,6 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
     heightCache = 0;
     heightLastTimeRetrieve = 0;
     scannedHeight: number = 0;
-
-    // getDaemonUrl(){
-    // 	return this.testnet ? 'http://localhost:48081/' : 'http://localhost:38081/';
-    // }
     nonRandomBlockConsumed = false;
     existingOuts: any[] = [];
 
@@ -310,15 +306,19 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
         let self = this;
         this.heightLastTimeRetrieve = Date.now();
         return new Promise<number>(function (resolve, reject) {
-            $.ajax({
-                url: self.nodeAddress + 'getheight',
-                method: 'POST',
-                data: JSON.stringify({})
-            }).done(function (raw: any) {
-                self.heightCache = parseInt(raw.height);
+            self.postData(self.nodeAddress + 'getheight', {}).then(data => {
+                self.heightCache = parseInt(data.height);
                 resolve(self.heightCache);
-            }).fail(function (data: any) {
-                reject(data);
+            }).catch(error => {
+                if (Constants.DEBUG_STATE) {
+                    console.log('REJECT');
+                }
+                try {
+                    console.log(JSON.parse(error.responseText));
+                } catch (e) {
+                    console.log(e);
+                }
+                reject(error);
             });
         });
     }
@@ -333,104 +333,80 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
         return watchdog;
     }
 
+    getRemoteNodeInformation(): Promise<RemoteNodeInformation> {
+        let self = this;
+
+        let information: RemoteNodeInformation;
+
+        return new Promise<RemoteNodeInformation>(function (resolve, reject) {
+
+            self.postData(self.nodeAddress + 'getinfo', {}).then(resp => {
+                information.fee_address = resp.fee_address;
+                information.status = resp.status;
+
+                resolve(information);
+            }).catch(error => {
+                if (Constants.DEBUG_STATE) {
+                    console.log('REJECT');
+                }
+                try {
+                    console.log(JSON.parse(error.responseText));
+                } catch (e) {
+                    console.log(e);
+                }
+                reject(error);
+            });
+        })
+    }
+
     getTransactionsForBlocks(startBlock: number): Promise<RawDaemonTransaction[]> {
         let self = this;
         let transactions: RawDaemonTransaction[] = [];
 
         return new Promise<RawDaemonTransaction[]>(function (resolve, reject) {
             let outCount: any;
-            let txHashesPerBlock: any[] = [];
             let finalTxs: any[] = [];
-            let blockTimes: any[] = [];
-
             let height = startBlock;
 
-            self.postData(self.nodeAddress + 'json_rpc', {
-                "jsonrpc": "2.0",
-                "id": 0,
-                "method": "on_getblockhash",
-                "params": [
-                    height
-                ]
-            }).then(data => {
-                let hash = data.result;
+            self.postData(self.nodeAddress + 'get_transaction_details_by_heights', {
+                "startBlock": startBlock,
+                "additor": 100,
+                "sigCut": true
+            }).then(response => {
+                let parsedResp = response;
+                if (parsedResp['status'] == 'OK') {
+                    let rawTxs = parsedResp['transactions'];
 
-                self.postData(self.nodeAddress + 'json_rpc', {
-                    "jsonrpc": "2.0",
-                    "id": 0,
-                    "method": "f_block_json",
-                    "params": {
-                        "hash": hash
-                    }
-                }).then(data => {
-                    let blockJsonBlock = data.result.block;
-                    let blockTxHashes: any[] = [];
-                    blockTimes[height] = blockJsonBlock.timestamp;
-                    let txs: any[] = blockJsonBlock.transactions;
-                    for (let x = 0; x < txs.length; x++) {
-                        // @ts-ignore
-                        blockTxHashes.push(txs[x].hash);
-                    }
+                    if (rawTxs !== null) {
+                        for (let iTx = 0; iTx < rawTxs.length; ++iTx) {
+                            let rawTx = rawTxs[iTx];
+                            let finalTx = rawTx;
 
-                    txHashesPerBlock[height] = blockTxHashes;
+                            delete finalTx.signatures;
+                            delete finalTx.unlockTime;
+                            delete finalTx.signatureSize;
+                            delete finalTx.ts;
+                            finalTx.global_index_start = outCount;
+                            finalTx.ts = rawTx.timestamp;
+                            finalTx.height = height;
+                            finalTx.hash = rawTx.hash;
+                            finalTxs.push(finalTx);
 
-                    self.postData(self.nodeAddress + 'get_transaction_details_by_hashes', {
-                        "transactionHashes": txHashesPerBlock[height]
-                    }).then(response => {
-                        let parsedResp = response;
-                        let rawTxs = parsedResp['transactions'];
-
-                        if (rawTxs !== null) {
-                            for (let iTx = 0; iTx < rawTxs.length; ++iTx) {
-                                let rawTx = rawTxs[iTx];
-                                let finalTx = rawTx;
-
-                                delete finalTx.signatures;
-                                delete finalTx.unlockTime;
-                                delete finalTx.signatureSize;
-                                delete finalTx.ts;
-                                finalTx.global_index_start = outCount;
-                                finalTx.ts = rawTx.timestamp;
-                                finalTx.height = height;
-                                finalTx.hash = rawTx.hash;
-                                finalTxs.push(finalTx);
-
-                                let vOutCount = finalTx.outputs.length;
-                                outCount += vOutCount;
-                            }
-
-                            transactions = finalTxs;
-
-                            if (Constants.DEBUG_STATE) {
-                                console.log("Show resolvable Tx Hashes");
-                                for (let i = 0; i < transactions.length; i++) {
-                                    console.log(`Tx hash ${transactions[i].hash}`);
-                                }
-                            }
-                            resolve(transactions);
+                            let vOutCount = finalTx.outputs.length;
+                            outCount += vOutCount;
                         }
-                    }).catch(error => {
+
+                        transactions = finalTxs;
+
                         if (Constants.DEBUG_STATE) {
-                            console.log('REJECT');
+                            console.log("Show resolvable Tx Hashes");
+                            for (let i = 0; i < transactions.length; i++) {
+                                console.log(`Tx hash ${transactions[i].hash}`);
+                            }
                         }
-                        try {
-                            console.log(JSON.parse(error.responseText));
-                        } catch (e) {
-                            console.log(e);
-                        }
-                        reject(error);
-                    });
-                }).catch(error => {
-                    if (Constants.DEBUG_STATE) {
-                        console.log('REJECT');
+                        resolve(transactions);
                     }
-                    try {
-                        console.log(JSON.parse(error.responseText));
-                    } catch (e) {
-                        console.log(e);
-                    }
-                    reject(error);
-                });
+                }
             }).catch(error => {
                 if (Constants.DEBUG_STATE) {
                     console.log('REJECT');

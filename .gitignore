@@ -19,3 +19,5 @@ src/pages/*.js
 src/providers/*.js
 src/utils/*.js
 src/workers/*.js
+
+package-lock.json
