@@ -144,7 +144,7 @@ export class WalletWatchdog {
 
     checkTransactions(rawTransactions: RawDaemonTransaction[]) {
         for (let rawTransaction of rawTransactions) {
-            let height = rawTransaction.height;
+            let height = rawTransaction.blockIndex;
             if (typeof height !== 'undefined') {
                 let transaction = TransactionsExplorer.parse(rawTransaction, this.wallet);
                 if (transaction !== null) {
@@ -181,7 +181,7 @@ export class WalletWatchdog {
             return;
         }
 
-        let transactionsToProcess: RawDaemonTransaction[] = this.transactionsToProcess.splice(0, 50); //process 50 tx's at a time
+        let transactionsToProcess: RawDaemonTransaction[] = this.transactionsToProcess.splice(0, 25); //process 50 tx's at a time
         if (transactionsToProcess.length > 0) {
             this.workerCurrentProcessing = transactionsToProcess;
             this.workerProcessing.postMessage({
@@ -198,12 +198,20 @@ export class WalletWatchdog {
 
     processTransactions(transactions: RawDaemonTransaction[]) {
         let transactionsToAdd = [];
+        if (Constants.DEBUG_STATE) {
+            console.log("processTransactions: ");
+            console.log(transactions);
+        }
 
         for (let tr of transactions) {
-            if (typeof tr.height !== 'undefined')
-                if (tr.height > this.wallet.lastHeight) {
+            if (typeof tr.blockIndex !== 'undefined') {
+                if (tr.blockIndex > this.wallet.lastHeight) {
+                    if (Constants.DEBUG_STATE) {
+                        console.log("processTransaction with height: " + tr.blockIndex);
+                    }
                     transactionsToAdd.push(tr);
                 }
+            }
         }
 
         this.transactionsToProcess.push.apply(this.transactionsToProcess, transactionsToAdd);
@@ -264,7 +272,7 @@ export class WalletWatchdog {
                             // @ts-ignore
                             console.log("lastTx.blockIndex + 1: " + (lastTx.blockIndex + 1));
                         }
-                        if (typeof lastTx.height !== 'undefined') {
+                        if (typeof lastTx.blockIndex !== 'undefined') {
                             self.lastBlockLoading = lastTx.blockIndex + 1;
                             if (Constants.DEBUG_STATE) {
                                 // @ts-ignore
@@ -391,8 +399,10 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
             }
             let outCount: any;
             let finalTxs: any[] = [];
-            let height = startBlock;
             let additor = 100;
+            if (startBlock + additor > self.heightCache) {
+                additor = self.heightCache - startBlock - 1;
+            }
 
             self.postData(self.nodeAddress + 'get_transaction_details_by_heights', {
                 "startBlock": startBlock,
@@ -408,7 +418,7 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
                         console.log("rawTxs !== null");
                         console.log(rawTxs);
                     }
-                    for (let iTx = 0; iTx < rawTxs.length; ++iTx) {
+                    for (let iTx = 0; iTx < rawTxs.length; iTx++) {
                         let rawTx = rawTxs[iTx];
                         let finalTx = rawTx;
 
@@ -418,7 +428,7 @@ export class BlockchainExplorerRpc2 implements BlockchainExplorer {
                         delete finalTx.ts;
                         finalTx.global_index_start = outCount;
                         finalTx.ts = rawTx.timestamp;
-                        finalTx.height = height;
+                        finalTx.height = rawTx.blockIndex;
                         finalTx.hash = rawTx.hash;
                         finalTxs.push(finalTx);
 
