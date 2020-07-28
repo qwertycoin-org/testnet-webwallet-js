@@ -328,17 +328,23 @@ class SendView extends DestructableView {
 					let amountToSend;
 					let devAmount;
 					let nodeAmount;
+					let nodeValue = (amount * config.remoteNodeFee) / 100;
+					if (nodeValue >= 10) {
+						nodeValue = 10;
+					}
+
 					if (self.useCountryCurrency) {
 						let temp = amount / self.countryCurrencyCache;
 						let devTemp = config.devFee / self.countryCurrencyCache;
-						let nodeTemp = ((amount * config.remoteNodeFee) / 100) / self.countryCurrencyCache;
+
+						let nodeTemp = nodeValue / self.countryCurrencyCache;
 						amountToSend = Math.floor(temp * Math.pow(10, config.coinUnitPlaces));
 						devAmount = Math.floor(devTemp * Math.pow(10, config.coinUnitPlaces));
 						nodeAmount =Math.floor(nodeTemp * Math.pow(10, config.coinUnitPlaces));
 					} else {
 						amountToSend = amount * Math.pow(10, config.coinUnitPlaces);
 						devAmount = config.devFee * Math.pow(10, config.coinUnitPlaces);
-						nodeAmount = ((amount * config.remoteNodeFee) / 100) * Math.pow(10, config.coinUnitPlaces);
+						nodeAmount = nodeValue * Math.pow(10, config.coinUnitPlaces);
 					}
 					let destinationAddress = self.destinationAddress;
 
