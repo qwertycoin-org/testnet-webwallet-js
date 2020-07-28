@@ -276,6 +276,7 @@ export class WalletWatchdog {
                             self.lastBlockLoading += 100;
                         } else {
                             self.lastBlockLoading = height;
+                            self.wallet.lastHeight = self.lastBlockLoading;
                         }
                     }
 
